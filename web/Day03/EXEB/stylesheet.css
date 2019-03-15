@@ -1,0 +1,52 @@
+.section_2 {
+    background-color: rgb(198,236,176);
+}
+
+.section {
+    background-image: url("./flowershop/flowershop.jpg");
+    height: 720px;
+    background-size: cover;
+    
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.block {
+z-index: 5;
+}
+
+.button {
+    display: inline-block;
+    padding: 15px 25px;
+    font-size: 24px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 15px;
+    margin-left: 100px 
+  }
+  
+  .button:hover {background-color: #3e8e41}
+  
+  .button:active {
+    background-color: #3e8e41;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);  
+  }
+
+  .overlay {
+width: 100%;
+height: 720px;
+background-color: #000000;
+opacity: 0.5;
+position: absolute;
+
+
+  }
