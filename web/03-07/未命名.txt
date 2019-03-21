@@ -1,0 +1,62 @@
+bottsrap- col with different size -- add in one single tag after it - fit different size when you make it wither
+
+js- to html code
+
+
+useful website:
+
+animate.css
+-remember the class name it provided to you in GitHub
+
+font awesome(find font and icon)- need make cdn
+<i> means icon
+
+smoothscroll
+-js to html features
+
+
+lorem ipsum- text paragraph
+
+
+
+class:
+you can add infinite class afterwards, no need any marks
+id also
+
+styling your website
+
+nav bar
+-alway used : flex top
+- expand lg
+
+
+navbartogglerdEMO- REFERNING NAV BAR item (change screen small- it becomes (toggle icon)scroll)
+
+
+aria-expanded
+
+navbar-toggler-icon need add <span>tag . cuz it need to be inline
+
+
+collapse navbar-collapse
+
+
+
+css.
+
+overlay class='hint: hover\ (when you put in the icon, the effect will...)
+
+position
+
+
+
+jqurey
+
+structure
+exp
+$(document).ready (function () { 
+$(window). scroll (function() { ....
+ if ...
+
+
+else if....

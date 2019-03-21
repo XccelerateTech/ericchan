@@ -1,0 +1,50 @@
+personal web page
+
+-bootsrap
+
+to show
+gallery
+tutorial exe.
+
+tips of widget
+-time counting moving
+-mock up (page to save your work)
+-contact me (with GitHub, facebook icon to click)
+-skill set, goal
+-work-in-progress
+-get my resume now
+-may be single page with vertically boxes 
+-movie background
+-my journey(diagram)
+-contact me (email box and content and send me the msg botton.)
+-think about to use widget and element you have learned as much as possible before you work
+-what can i do
+
+
+
+file orders <head>
+
+1. library css
+2. custom css
+3. html content (title)
+4.library js
+5.customer js
+
+
+flex box
+-frog game
+
+bootstrap
+-reset
+-reusable widget (nav...)
+
+
+
+application 
+
+draw.io - platform to draft your layout 
+
+
+
+git
+git branch name

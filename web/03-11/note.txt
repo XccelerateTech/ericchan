@@ -1,0 +1,40 @@
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+/* port in mobile responsive screen*/
+
+
+overwrite bootstrap  command in css style sheet(after the class name)  !important
+
+Reminder useful website
+
+fontawersome - for icon
+
+animated css 
+
+
+
+Javascript
+
+Objects made up of key value pairs
+
+eg., 
+
+var phone = { type: 'iphone', cost 1000, coloraturas red,}
+
+phone.type /* iphone*/
+
+var company={console.log(company.name) //xccelerate..// }
+
+
+useful javascript browser:
+
+codesandbox
+
+real.io
+
+
+
+To do list
+css floating article
+flexbox foggy game
+object codecademy
