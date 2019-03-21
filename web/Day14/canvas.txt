@@ -1,0 +1,75 @@
+canvas
+-html tag
+-done by js/jquery
+-height and width cannot be set by css (need to do in attribute
+-alt is in the tag context 
+
+-can use css to position it
+
+-square model
+-(0,0) in the top left , 加1在x或y = 1格仔
+
+sytax
+
+in is
+
+1.storing location 
+
+2.ctx(context) = canvas.getcontext ('2d')
+3.cox.fillstyle= 'green';
+4.cox.fillRect (10, 10, 100, 100)
+
+first half= location xy
+second half= drawing mixed
+
+(for square)
+
+
+
+
+
+
+1>2> ctx.beginPath(); (initialise drawing)
+ctx.move to (20,20);  //the stars point from//
+ctx. lineto (200, 200) // where it end point
+ctx.stroke(); // start drawing(link btw two points)
+
+
+
+quaint  (start , cp//control point//, endpoint)
+
+
+
+
+
+event 
+click-> Drag(按實） -> Release
+mouse down mousemove(dragging or not dragging)  mouse/mouseleave 
+
+
+offset
+
+
+
+
+
+p.9
+
+var currentFunction= new DrawingLine() //make object to a class template , called global canvas things// //new drawing event// (event handler)
+
+button for drawing lines, rectangles, curves comes from js code // strategies//
+
+
+
+pj folder structure
+
+index.html
+assess external library
+js // eg., retangle line, line drawing.....//
+css+bootsrap // for position//
+html for pages
+
+
+
+upload to xccelerateOrg
+-make a private repository // invite other team members, give them permission of read and write//
