@@ -1,0 +1,26 @@
+{{#each renderArrayProperty}}
+<div id={{@index}}>
+    <textarea rows="10" cols="50" class="textValue" data-a={{@index}}>
+
+{{content}}
+
+</textarea>
+    <button class="putSubmit" data-id="{{@index}}">put</button>
+    <button class="deleteSubmit" data-c="{{@index}}">delete</button>
+</div>
+
+{{/each}}
+
+{{!-- <script>        
+    $("#deleteSubmit").click(function () {
+        let id = $("#id").val();
+        console.log(id);
+        console.log(typeof id);
+
+        $.ajax({
+            type: 'DELETE',
+            url: `/NotesWords/${id}`
+
+        });
+    })
+</script> --}}

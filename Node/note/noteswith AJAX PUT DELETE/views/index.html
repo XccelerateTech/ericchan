@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Main Page</title>
+</head>
+
+<body>
+    <ul>
+        <li> <a href="/NotesWords">Get</a></li>
+        <li> <a href="">GetParticular</a></li>
+        <li> <a href="">Post</a></li>
+        <li> <a href="">Put</a></li>
+        <li> <a href="">Delete</a></li>
+    </ul>
+
+
+
+    <button id="get" style="display: inline-block"><a href="/NotesWords">Get</a></button>
+    <button class="GetParticular" style="display: inline-block">
+        GetParticular
+        <form class="textExtend" action="/NotesWords/oneuser" method="POST">
+            <input type='text'/ name="id">
+            <input type='submit' value="Submit" />
+        </form>
+
+
+    </button>
+
+    <button class="postButton">
+        Post
+
+        <form class="textExtend" action="/NotesWords" method="POST">
+
+            <input type='text' name="data" />
+            <input type='submit' value="Submit" />
+        </form>
+
+    </button>
+    <button class="putButton">
+        Put
+
+        <form class="textExtend" action="/NotesWords/" method="PUT">
+            <input type='text' id="putId" />
+            <input type='text' id= "typeValue" />
+            <input type='submit' value="Submit" id="putSubmit" />
+        </form>
+
+    </button>
+    <button class="deleteButton">
+        Delete
+
+        <form class="textExtend" action="/NotesWords/" method="DELETE">
+
+            <input type='text' id="deleteId" />
+            <input type='submit' value="Submit" id="deleteSubmit" />
+        </form>
+
+    </button>
+
+    <script src="https://code.jquery.com/jquery-3.4.0.min.js"
+        integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
+    <script> $(".postButton").click(function () {
+            $(".textExtend").toggle();
+        });
+
+        $(".GetParticular").click(function () {
+            $(".textExtend").toggle();
+        });
+
+        $(".deleteButton").click(function () {
+            $(".textExtend").toggle();
+        });
+        $(".putButton").click(function () {
+            $(".textExtend").toggle();
+        });
+        // if you use get method to get particular data 
+        // $("#getsubmit").click(function(){
+        //    let id = $("#getid").val();
+        //    console.log(id);
+        //    console.log(typeof id);
+
+        //     $.ajax(`/NotesWords/${id}`)
+        //     .then(function(result) {
+        //         console.log(result);
+        //     })
+        // })
+//use front end to fentch data from backend
+        $("#deleteSubmit").click(function () {
+            let id = $("#deleteId").val();
+            console.log(id);
+            console.log(typeof id);
+
+            $.ajax({
+                type: 'DELETE',
+                url: `/NotesWords/${id}`
+                // data: {name: 'new'} if put method
+            });
+        })
+//use front end to fentch data from backend
+        $("#putSubmit").click(function () {
+            let id = $("#putId").val();
+            let typeValue = $("#typeValue").val();
+            console.log(id);
+            console.log(typeValue);
+            console.log(typeof id);
+            console.log(typeof typeValue);
+            $.ajax({
+                type: 'PUT',
+                url: `/NotesWords/${id}?data=typeValue`,
+                data: {name: typeValue}  //req.body.name
+            });
+        })
+
+    </script>
+</body>
+
+
+</html>
