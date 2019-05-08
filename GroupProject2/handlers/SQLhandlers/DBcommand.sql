@@ -35,7 +35,7 @@ CREATE TABLE "content" (
   "category_id" int,
   "personal" boolean,
   "txt" boolean,
-  "photo" boolean,
+  "photoandtext" boolean,
   "feed" boolean,
   "comment" boolean
 );
