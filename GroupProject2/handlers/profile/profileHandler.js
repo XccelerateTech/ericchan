@@ -1,4 +1,4 @@
-const SQLQuery = require('./SQLhandlers/profile/profileSQLquery')
+const SQLQuery = require('./SQLhandlers/profileFeed/profileSQLquery')
 
 
 const getFeedFunc = async (req, res, next) => {

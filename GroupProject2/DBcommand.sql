@@ -16,7 +16,7 @@ CREATE TABLE "category" (
 
 CREATE TABLE "users_community" (
   "id" serial PRIMARY KEY,
-  "users" int,
+  "users_id" int,
   "communities_id" int,
   "admin" boolean
 );
@@ -28,16 +28,21 @@ CREATE TABLE "community" (
 );
 
 CREATE TABLE "content" (
-  "id" serial UNIQUE ,
-  "content" varchar,
+  "id" serial UNIQUE,
+  "feed_content_id" int,
+  "Comment_content" varchar,
   "user_id" int,
   "community_id" int,
   "category_id" int,
   "personal" boolean,
   "txt" boolean,
-  "photoandtext" boolean,
-  "feed" boolean,
-  "comment" boolean
+  "photoAndText" boolean
+);
+
+CREATE TABLE "feed" (
+  "feed_id" serial PRIMARY KEY,
+  "user_id" int,
+  "feed_content" varchar
 );
 
 ALTER TABLE "users_community" ADD FOREIGN KEY ("users") REFERENCES "users" ("id");
@@ -46,8 +51,12 @@ ALTER TABLE "users_community" ADD FOREIGN KEY ("communities_id") REFERENCES "com
 
 ALTER TABLE "community" ADD FOREIGN KEY ("category_id") REFERENCES "category" ("id");
 
+ALTER TABLE "content" ADD FOREIGN KEY ("feed_content_id") REFERENCES "feed" ("feed_id");
+
 ALTER TABLE "content" ADD FOREIGN KEY ("user_id") REFERENCES "users" ("id");
 
 ALTER TABLE "content" ADD FOREIGN KEY ("community_id") REFERENCES "community" ("id");
 
 ALTER TABLE "content" ADD FOREIGN KEY ("category_id") REFERENCES "category" ("id");
+
+ALTER TABLE "feed" ADD FOREIGN KEY ("user_id") REFERENCES "users" ("id");

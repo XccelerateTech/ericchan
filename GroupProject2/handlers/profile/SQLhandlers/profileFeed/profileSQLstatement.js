@@ -1,8 +1,5 @@
 exports.getFeedSQL = 
-`SELECT ID, USER_ID,CONTENT FROM CONTENT
-WHERE PERSONAL = TRUE AND
-FEED = TRUE AND
-USER_ID = $1 ORDER BY id ASC
+`select content.personal,feed.feed_content, feed.feed_id, content.id from content inner join feed on content.user_id = feed.user_id and content.feed_content_id = feed.feed_id                                                                             where personal = true;
 `
 
 exports.getTextFeedSQL = 
