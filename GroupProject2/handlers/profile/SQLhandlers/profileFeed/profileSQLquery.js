@@ -86,9 +86,22 @@ function deleteData(array) {
     })
 }
 
+function deleteFeedCommentData(array) {
+    return new Promise(function (resolve, reject) {
+        client.query(SQLStatement.deleteFeedCommentSQL,array, function (err, results) {
+            if (err) {
+                console.log(err);
+            }
+
+            resolve(results.rows);
+        })
+    })
+}
+
 module.exports.getFeedData = getFeedData;
 module.exports.getTextData = getTextData;
 module.exports.getPhotoData = getPhotoData;
 module.exports.postData = postData;
 module.exports.putData = putData;
 module.exports.deleteData = deleteData;
+module.exports.deleteFeedCommentData = deleteFeedCommentData;

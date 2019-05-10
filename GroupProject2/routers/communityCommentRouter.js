@@ -1,5 +1,5 @@
 const express = require('express');
-const communityCommentHandler = require('../handlers/communityCommentHandler') 
+const communityCommentHandler = require('../handlers/community/communityCommentHandler') 
 const communityCommentRouter = express.Router();
 
 

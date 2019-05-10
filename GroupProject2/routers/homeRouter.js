@@ -1,5 +1,5 @@
 const express = require('express');
-const homeHandler = require('../handlers/homeHandler.js');
+const homeHandler = require('../handlers/home/homeHandler');
 const homeRouter = express.Router();
 const homeCommentRouter = require('./homeCommentRouter')
 

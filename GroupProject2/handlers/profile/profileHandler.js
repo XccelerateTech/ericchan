@@ -90,8 +90,11 @@ const deleteFeedFunc = async (req, res, next) => {
     let contentId = result[req.params.id].id
     let array = []
     array.push(contentId)
+    console.log(contentId)
 
+    SQLQuery.deleteFeedCommentData(array) //the order is important! comment must be first cuz comment is the foregin key of the post table//
     SQLQuery.deleteData(array);
+
 
     let newResult = await SQLQuery.getFeedData(userIdArray);
     console.log(newResult)
@@ -103,4 +106,3 @@ module.exports.getFeedFunc = getFeedFunc
 module.exports.postFeedFunc = postFeedFunc
 module.exports.putFeedFunc = putFeedFunc
 module.exports.deleteFeedFunc = deleteFeedFunc
-

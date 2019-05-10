@@ -26,6 +26,31 @@ function getComment(array) {
     })
 }
 
+function getCommentForEdit(array) {
+    return new Promise(function (resolve, reject) {
+        client.query(SQLStatement.getCommentForEditSQL,array, function (err, results) {
+            if (err) {
+                console.log(err);
+            }
+
+            resolve(results.rows);
+        })
+    })
+}
+
+function getCommentFeed(array) {
+    return new Promise(function (resolve, reject) {
+        client.query(SQLStatement.getCommendFeedSQL,array, function (err, results) {
+            if (err) {
+                console.log(err);
+            }
+
+            resolve(results.rows);
+        })
+    })
+}
+
+
 // function getTextData(array) {
 //     return new Promise(function (resolve, reject) {
 //         client.query(SQLStatement.getTextFeedSQL,array, function (err, results) {
@@ -89,6 +114,8 @@ function deleteComment(array) {
 module.exports.getComment = getComment;
 // module.exports.getTextData = getTextData;
 // module.exports.getPhotoData = getPhotoData;
+module.exports.getCommentForEdit = getCommentForEdit
+module.exports.getCommentFeed = getCommentFeed
 module.exports.postComment = postComment;
 module.exports.putComment = putComment;
 module.exports.deleteComment = deleteComment;

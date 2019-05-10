@@ -1,5 +1,5 @@
 const express = require('express');
-const profileHandler = require('../handlers/profileHandler.js');
+const profileHandler = require('../handlers/profile/profileHandler.js');
 const profileRouter = express.Router();
 const profileCommentRouter = require('./profileCommentRouter')
 

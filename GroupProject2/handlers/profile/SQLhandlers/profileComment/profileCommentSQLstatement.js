@@ -1,11 +1,32 @@
 exports.getCommentSQL = 
-`SELECT ID, USER_ID,CONTENT FROM CONTENT
-WHERE PERSONAL = TRUE AND
-FEED = TRUE AND
-COMMENT = TRUE AND
-FEED_ID = $1
-USER_ID = $2 ORDER BY id ASC
 `
+SELECT comment.id, comment.user_id,comment.comment_content,post.comment_box 
+from comment                                                                                  
+inner join post                                                                              
+on comment.comment_box_id = post.comment_box
+where comment.comment_box_id = $1
+ORDER BY id ASC
+`
+
+
+exports.getCommentForEditSQL = 
+`
+SELECT comment.id, comment.user_id,comment.comment_content,post.comment_box 
+from comment                                                                                  
+inner join post                                                                             
+on comment.comment_box_id = post.comment_box
+where comment.comment_box_id = $1 and
+comment.user_id = $2
+ORDER BY id ASC
+`
+
+exports.getCommendFeedSQL = 
+`
+SELECT USER_ID FROM POST
+WHERE COMMENT_BOX = $1
+ORDER BY id ASC
+`
+
 
 // exports.getTextFeedSQL = 
 // `SELECT CONTENT FROM CONTENT
@@ -24,19 +45,20 @@ USER_ID = $2 ORDER BY id ASC
 // `
 
 exports.postCommentSQL = 
-`INSERT INTO CONTENT (CONTENT,USER_ID,PERSONAL,TXT,FEED,COMMENT,PHOTOANDTEXT)
-VALUES($1,$2,TRUE,$3,TRUE,FALSE,$4)
+`INSERT INTO COMMENT (COMMENT_CONTENT,USER_ID,TXT,PHOTO,COMMENT_BOX_ID)
+VALUES($1,$2,$3,$4,$5)
 `
 
 exports.putCommentSQL = 
-`UPDATE CONTENT
-SET CONTENT = $1,
+`UPDATE COMMENT
+SET COMMENT_CONTENT = $1,
 TXT = $2,
-PHOTOANDTEXT = $3
+PHOTO = $3
 WHERE ID = $4
 `
 
 exports.deleteCommentSQL = 
-`DELETE FROM CONTENT
+`DELETE FROM COMMENT
 WHERE ID = $1
 `
+//remember also put into the post handler//

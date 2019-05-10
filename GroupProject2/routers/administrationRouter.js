@@ -1,5 +1,5 @@
 const express = require('express');
-const administrationHandler = require('../handlers/administrationHandler.js');
+const administrationHandler = require('../handlers/administration/administrationHandler.js');
 const administrationRouter = express.Router();
 
 
