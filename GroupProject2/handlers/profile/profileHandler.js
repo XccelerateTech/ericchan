@@ -2,7 +2,7 @@ const SQLQuery = require('./SQLhandlers/profileFeed/profileSQLquery')
 
 
 const getFeedFunc = async (req, res, next) => {
-    let user_id = await req.user.id //user authentication
+    let user_id = req.user.id //user authentication
     let array = [user_id];
     let result = await SQLQuery.getFeedData(array);
 

@@ -26,6 +26,57 @@ function getFeedData(array) {
     })
 }
 
+function postData(array) {
+    return new Promise(function (resolve, reject) {
+        client.query(SQLStatement.postFeedSQL,array, function (err, results) {
+            if (err) {
+                console.log(err);
+            }
+
+            resolve(results.rows);
+        })
+    })
+}
+
+function putData(array) {
+    return new Promise(function (resolve, reject) {
+        client.query(SQLStatement.putFeedSQL,array, function (err, results) {
+            if (err) {
+                console.log(err);
+            }
+
+            resolve(results.rows);
+        })
+    })
+}
+
+function deleteFeedData(array) {
+    return new Promise(function (resolve, reject) {
+        client.query(SQLStatement.deleteFeedSQL,array, function (err, results) {
+            if (err) {
+                console.log(err);
+            }
+
+            resolve(results.rows);
+        })
+    })
+}
+
+function deleteFeedCommentData(array) {
+    return new Promise(function (resolve, reject) {
+        client.query(SQLStatement.deleteFeedCommentSQL,array, function (err, results) {
+            if (err) {
+                console.log(err);
+            }
+
+            resolve(results.rows);
+        })
+    })
+}
 
 
 module.exports.getFeedData = getFeedData;
+module.exports.postData = postData;
+module.exports.putData = putData;
+module.exports.deleteFeedData = deleteFeedData;
+module.exports.deleteFeedCommentData = deleteFeedCommentData;
