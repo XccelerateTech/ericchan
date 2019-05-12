@@ -1,13 +1,29 @@
 const SQLQuery = require('./SQLhandlers/profileComment/profileCommentSQLquery')
-
+// const PostSQLQuery = require('./SQLhandlers/profileFeed/profileSQLquery')
 
 const getCommentFunc = async (req,res,next)=>{
-    let post_id =  req.params.id // comment_box_id
-    let array = [post_id];
-    let result = await SQLQuery.getComment(array);
+    // let user_id = await req.user.id //user authentication
+    // let Postarray = [user_id];
+    // let postResult = await PostSQLQuery.getFeedData(Postarray);
 
-    console.log(result);
-    res.send(result); //user's feed in a format of array object
+   
+   
+    let post_id =  req.params.id // comment_box_id
+    // console.log(post_id);
+    // let array = [post_id];
+    // let result = await SQLQuery.getComment(array);
+
+    // console.log(result);
+
+    // let renderCommentObject = { renderCommentArrayProperty: result };
+    // // let renderObject = { renderArrayProperty: postResult };
+    // // res.render('./partials/profile', renderObject)
+
+    res.render('./layouts/comment_profile', {layout: false});
+
+    // res.render('comment', {layout:'comment_profile.handlebars'});
+    // res.render('./partials/comment_profile', renderCommentObject)
+
 }
 
 const postCommentFunc = async (req,res,next)=>{

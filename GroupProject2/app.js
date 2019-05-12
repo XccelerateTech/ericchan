@@ -6,12 +6,18 @@ const profileRouter = require('./routers/profileRouter.js')
 const communityRouter = require('./routers/communityRouter.js')
 const administrationRouter = require('./routers/administrationRouter.js')
 const basicAuth = require('basic-auth')
+const bodyParser = require('body-parser');
 var pg = require('pg');
+const path = require('path');
 
-app.use(express.static('public'));
-app.engine('handlebars', hb({ defaultLayout: 'index' }));
+
+app.use(express.static(path.join('public')));
+app.use(bodyParser.urlencoded({ extended: false }))
+// app.engine('handlebars', exphbs({defaultLayout: 'index' }));
+app.engine('handlebars', hb({defaultLayout:'index'}));
 app.set('view engine', 'handlebars');
-
+app.set("views", "./views")
+// app.set('view engine', exphbs);
 
 var config = {
     user: 'wah',

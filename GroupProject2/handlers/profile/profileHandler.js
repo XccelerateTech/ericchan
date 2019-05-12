@@ -7,13 +7,19 @@ const getFeedFunc = async (req, res, next) => {
     let result = await SQLQuery.getFeedData(array);
 
     console.log(result);
-    res.send(result); //user's feed in a format of array object
+
+
+    let renderObject = { renderPostProperty: result};
+
+    res.render('./layouts/index', renderObject)
+
+    // res.send(result); //user's feed in a format of array object
 }
 
 const postFeedFunc = async (req, res, next) => {
 
     let user_id = req.user.id
-    let feedContent = req.query.data
+    let feedContent = req.body.data
     console.log(feedContent)
     var chars = feedContent.split('');
     var last = chars[chars.length - 1]
@@ -42,7 +48,7 @@ const postFeedFunc = async (req, res, next) => {
     let result = await SQLQuery.getFeedData(getArray);
     console.log(result);
 
-    res.send(array);
+    res.redirect('/profile')
 }
 
 const putFeedFunc = async (req, res, next) => {
@@ -98,6 +104,7 @@ const deleteFeedFunc = async (req, res, next) => {
 
     let newResult = await SQLQuery.getFeedData(userIdArray);
     console.log(newResult)
+    // res.redirect('/profile')
     res.send('deleted');
 }
 

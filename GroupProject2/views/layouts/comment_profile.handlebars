@@ -3,24 +3,27 @@
 
 <head>
 
-{{> head}}
-  <title>Main hello Page</title>
+{{>head}}
+  <title>Profile Page</title>
 </head>
 
 <body>
 {{> header}}
-{{> post_box}}
 
+{{> post_box}}
+<h1>hello</h1>
 {{#each renderPostProperty}}
 <div id={{@index}}>
     <textarea rows="3" cols="20" class="input textValue" data-a={{@index}}>
 
 {{content}}
 
+
 </textarea>
+<textarea>
+  yo
 
-
-
+</textarea>
   <i class="far fa-heart"></i>
  <a href="profile/comment/6" class='comment'>comment</a>
   <i class="far fa-share-square"></i>
@@ -30,6 +33,8 @@
 
 
 {{/each}}
+
+{{> text}}
 
 
 </div>

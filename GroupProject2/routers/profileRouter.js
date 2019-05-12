@@ -3,13 +3,13 @@ const profileHandler = require('../handlers/profile/profileHandler.js');
 const profileRouter = express.Router();
 const profileCommentRouter = require('./profileCommentRouter')
 
-
+profileRouter.use('/comment', profileCommentRouter)
 profileRouter.get('/', profileHandler.getFeedFunc);
-profileRouter.post('/:id', profileHandler.postFeedFunc);
+profileRouter.post('/', profileHandler.postFeedFunc);
 profileRouter.put('/:id', profileHandler.putFeedFunc);
 profileRouter.delete('/:id', profileHandler.deleteFeedFunc);
 
 
-profileRouter.use('/comment', profileCommentRouter)
+
 
 module.exports = profileRouter;
