@@ -14,7 +14,7 @@ const path = require('path');
 app.use(express.static(path.join('public')));
 app.use(bodyParser.urlencoded({ extended: false }))
 // app.engine('handlebars', exphbs({defaultLayout: 'index' }));
-app.engine('handlebars', hb({defaultLayout:'index'}));
+app.engine('handlebars', hb({defaultLayout:'main'}));
 app.set('view engine', 'handlebars');
 app.set("views", "./views")
 // app.set('view engine', exphbs);
@@ -85,6 +85,47 @@ app.use('/community', communityRouter)
 app.use('/administration', administrationRouter)
 
 
+// elvis upload
+const multer = require('multer');
 
+const storage = multer.diskStorage({
+    destination: './public/uploads/',
+    filename: function (req, file, cb) {
+        cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+    }
+});
+
+
+
+app.post('/upload', (req, res) => {
+    const upload = multer({
+        storage: storage,
+    }).single('myImage');
+
+    upload(req, res, (err) => {
+        if (err) {
+            console.log(err)
+        }
+        else {
+            // res.render('ji_post', {
+            //     user: req.user.id
+            // })
+            res.redirect('/profile')
+            // // console.log(req.body.comment)
+            async function insertPic(name) {
+                var query = `INSERT INTO POST (CONTENT,USER_ID,PERSONAL,TXT,PHOTO)VALUES  ($1, $2, $3, $4, $5) RETURNING id`;
+                await client.query(query, [name, req.user.id, 'TRUE', 'FALSE', 'TRUE'], function (err, results) {
+                    if (err) {
+                        console.log(err);
+                    }
+                })
+            }
+
+            let captionImg = `<img src="/uploads/${req.file.filename}" style="width:500px; height:auto;">`
+            // let captionImg = '' +  req.body.comment + '/' + req.file.filename ;
+            insertPic(captionImg)
+        }
+    })
+})
 
 app.listen(3000);

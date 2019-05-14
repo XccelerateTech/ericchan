@@ -5,6 +5,7 @@ from comment
 inner join post                                                                              
 on comment.comment_box_id = post.comment_box
 where comment.comment_box_id = $1
+
 ORDER BY id ASC
 `
 

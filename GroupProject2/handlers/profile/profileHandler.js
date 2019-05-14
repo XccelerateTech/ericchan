@@ -9,17 +9,28 @@ const getFeedFunc = async (req, res, next) => {
     console.log(result);
 
 
-    let renderObject = { renderPostProperty: result};
+    let renderObject = { renderPostProperty: result, username: [{username: result[0]['username']}]};
 
-    res.render('./layouts/index', renderObject)
-
+    // res.render('post', renderObject)
+    res.render('ji_post', renderObject)
     // res.send(result); //user's feed in a format of array object
+}
+
+const getProfileFeedFunc = async (req, res, next) => {
+    let user_id = req.params.id //user authentication
+    let array = [user_id];
+    let result = await SQLQuery.getFeedData(array);
+
+    res.body = result
+    console.log(result);
+
+    res.send(result)
 }
 
 const postFeedFunc = async (req, res, next) => {
 
     let user_id = req.user.id
-    let feedContent = req.body.data
+    let feedContent = req.query.data
     console.log(feedContent)
     var chars = feedContent.split('');
     var last = chars[chars.length - 1]
@@ -48,7 +59,9 @@ const postFeedFunc = async (req, res, next) => {
     let result = await SQLQuery.getFeedData(getArray);
     console.log(result);
 
-    res.redirect('/profile')
+let sentArray = [{'content':feedContent}]
+    
+    res.send(sentArray);
 }
 
 const putFeedFunc = async (req, res, next) => {
@@ -87,7 +100,7 @@ const putFeedFunc = async (req, res, next) => {
     let newResult = await SQLQuery.getFeedData(userIdArray);
     console.log(newResult)
 
-    res.send(array);
+    res.send(newResult);
 }
 
 const deleteFeedFunc = async (req, res, next) => {
@@ -110,6 +123,7 @@ const deleteFeedFunc = async (req, res, next) => {
 
 
 module.exports.getFeedFunc = getFeedFunc
+module.exports.getProfileFeedFunc = getProfileFeedFunc
 module.exports.postFeedFunc = postFeedFunc
 module.exports.putFeedFunc = putFeedFunc
 module.exports.deleteFeedFunc = deleteFeedFunc

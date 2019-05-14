@@ -1,7 +1,10 @@
 exports.getFeedSQL = 
-`select id, user_id, content from post
+`select post.id, post.user_id, post.content,users.username
+from post
+inner join users
+on post.user_id = users.id
 WHERE user_id = $1
-ORDER BY id ASC
+ORDER BY id DESC
 `
 
 // exports.getTextFeedSQL = 
@@ -41,3 +44,11 @@ exports.deleteFeedCommentSQL =
 `DELETE FROM COMMENT
 WHERE comment_box_id = $1
 `
+
+
+// select post.id, post.user_id, post.content,users.username
+// from post
+// inner join users
+// on post.user_id = users.id
+// WHERE user_id = $1
+// ORDER BY id DESC

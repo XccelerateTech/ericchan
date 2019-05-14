@@ -13,7 +13,20 @@ const getCommentFunc = async (req, res, next) => {
 
     console.log(result);
 
+    let renderObject = {
+        renderPostCommentProperty: result
+    }; //want to render the result' comment_content in main.js
+
+    // res.render('post', renderObject
+    // );
+
+    // let data = renderObject.renderPostCommentProperty
+    // res.json(result);
+    console.log('go')
+    
     res.send(result)
+// { id: 7, user_id: 1, content: 'cat', comment_content: }
+
 }
 
 const postCommentFunc = async (req, res, next) => {

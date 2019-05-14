@@ -5,6 +5,7 @@ const profileCommentRouter = require('./profileCommentRouter')
 
 profileRouter.use('/comment', profileCommentRouter)
 profileRouter.get('/', profileHandler.getFeedFunc);
+profileRouter.get('/:id', profileHandler.getProfileFeedFunc);
 profileRouter.post('/', profileHandler.postFeedFunc);
 profileRouter.put('/:id', profileHandler.putFeedFunc);
 profileRouter.delete('/:id', profileHandler.deleteFeedFunc);
