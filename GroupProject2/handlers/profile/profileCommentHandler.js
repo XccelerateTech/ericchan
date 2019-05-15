@@ -36,7 +36,7 @@ const postCommentFunc = async (req, res, next) => {
     let postArray = [user_id];
     let feed = await PostSQLQuery.getFeedData(postArray);
 
-    let post_id = feed[req.params.id].id // comment_box_id
+    let post_id = req.params.id // comment_box_id
     console.log(commentContent)
 
     var chars = commentContent.split('');

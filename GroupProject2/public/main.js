@@ -1,5 +1,14 @@
+// $('.comment').on('click', function(event){
+//     event.preventDefault()
+//     console.log('hello')
+//     $('.card-header').removeClass('read-more-state');
+//     // $(event.target).removeClass('read-more-state');
+//   });
+
 $(".comment").click(function(){
+    
     $('.commentWork').toggle();
+
 })
 
 
@@ -25,11 +34,47 @@ window.reload = function () {
 
 const postTemplate = Handlebars.compile(  //broswer said it is undefined here//
     `
-  {{#each post}} 
-  {{comment_content}} 
-   {{/each}}
+    {{#each post}} 
+    <div class="card-header comment-box read-more-state">
+    <div class="d-flex justify-content-between align-items-center">
+        <div class="d-flex justify-content-between align-items-center">
+            <div class="mr-2">
+                <img class="rounded-circle" width="35" src="https://picsum.photos/50/50" alt="">
+            </div>
+            <div class="ml-2">
+                <a href="#" class="fcLink">
+                    <div class="h7 m-0">{{username}}</div>
+                </a>
+            </div>
+        </div>
+        <div class="card-text" contentEditable="true" style="border: none" rows="4" cols="20">
+        {{comment_content}} 
+        </div>
+        <div>
+            <div class="dropdown">
+                <button class="btn btn-link dropdown-toggle" type="button" id="gedf-drop1" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    <i class="fa fa-ellipsis-h"></i>
+                </button>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="gedf-drop1">
+                    <div class="h6 dropdown-header">Menu</div>
+                    <a class="dropdown-item" href="#">Edit</a>
+                    <a class="dropdown-item" href="#">Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{/each}}
+
+
   `
 );
+
+
+// {{#each post}} 
+// {{comment_content}} 
+//  {{/each}}
 
 // function append(){}
 
@@ -60,7 +105,6 @@ $(".comment").click(function (event) {
             console.log("axios then is working")
             // console.log(res.data, 'X')
             console.log(res + 'hello')
-            
             
             $('.commentWork-'+id).html(postTemplate({ post: res.data }));
             // reloadPost(res.data)
@@ -166,10 +210,12 @@ $(".textedValue").mouseleave(function (event) {
 
 $(".putSubmit").click(function (event) {
     let id = $(event.currentTarget).data('put');
+    let user_id = $(event.currentTarget).data('userId')
     console.log(id);
+    console.log(user_id)
     console.log(content);
     
-    axios.put("/profile/" + id + "?data=" + content)
+    axios.put("/profile/" + id + "?data=" + content+"%userId="+ user_id)
         .then(res => location.reload(true))
 
 });
