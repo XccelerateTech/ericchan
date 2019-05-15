@@ -3,11 +3,11 @@ const PostSQLQuery = require('./SQLhandlers/communityFeed/communitySQLquery')
 
 
 const getCommentFunc = async (req, res, next) => {
-    let community_id = await req.params.id  //community no.//
-    let array = [community_id];
-    let feed = await PostSQLQuery.getFeedData(array)
+    // let community_id = await req.params.id  //community no.//
+    // let array = [community_id];
+    // let feed = await PostSQLQuery.getFeedData(array)
 
-    let post_id = feed[req.query.id].id // comment_box_id, req.parms.id = location
+    let post_id = req.params.id // comment_box_id, req.parms.id = location
     console.log(post_id);
     let commentArray = [post_id];
     let result = await SQLQuery.getComment(commentArray);

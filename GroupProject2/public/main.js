@@ -209,24 +209,26 @@ $(".textedValue").mouseleave(function (event) {
 })
 
 $(".putSubmit").click(function (event) {
+    let user_id = $(event.currentTarget).data('user')
     let id = $(event.currentTarget).data('put');
-    let user_id = $(event.currentTarget).data('userId')
+    
     console.log(id);
     console.log(user_id)
     console.log(content);
     
-    axios.put("/profile/" + id + "?data=" + content+"%userId="+ user_id)
+    axios.put("/profile/" + id + "?data=" + content+"&userId="+ user_id)
         .then(res => location.reload(true))
 
 });
 
 $(".deleteSubmit").click(function (event) {
+    let user_id = $(event.currentTarget).data('user')
     let id = $(event.currentTarget).data('delete');
     console.log(id);
     console.log(typeof id);
 
 
-    axios.delete("/profile/" + id)
+    axios.delete("/profile/" + id + "?userId="+ user_id)
         .then(res => location.reload(true))
 
 })

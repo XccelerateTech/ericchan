@@ -1,4 +1,4 @@
-{{#each renderPostProperty}}
+{{#each renderPostProperty }}
 <div class="card gedf-card">
     <div class="card-header">
         <div class="d-flex justify-content-between align-items-center">
@@ -7,7 +7,7 @@
                     <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="">
                 </div>
                 <div class="ml-2">
-                    <div class="h5 m-0">{{username}}</div>
+                    <div class="h5 m-0">{{this.username}}</div>
                 </div>
             </div>
             <div>
@@ -38,7 +38,7 @@
 
         {{!-- </p> --}}
         <div class="card-text textedValue" contentEditable="true" style="border: none" rows="4" cols="20"
-            data-putText="{{id}}">{{{content}}}</div>
+            data-putText="{{this.id}}">{{{this.content}}}</div>
 
         {{!-- <div class="commentWork-{{id}}" data-commentWork="{{id}}">  --}}
 
@@ -53,14 +53,26 @@
     </div>
     <div class="card-footer">
         <a href="#" class="card-link"><i class="far fa-heart"></i> Like</a>
-        <a href="#" class="card-link comment" data-comment="{{id}}"><i class="far fa-comment"></i> Comment</a>
+        {{#if category_id}}
+        <a href="#" class="card-link comment" data-comment="{{this.id}}" data-community="{{this.category_id}}"><i class="far fa-comment"></i> Comment</a>
+        {{else}}
+        <a href="#" class="card-link comment" data-comment="{{this.id}}" data-community="{{this.category_id}}"><i class="far fa-comment"></i> Comment</a>
+        {{/if}}
         {{!-- <div class="commentWork" data-commentWork="{{id}}"></div> --}}
         <a href="#" class="card-link"><i class="fa fa-mail-forward"></i> Share</a>
-        <a href="#" class="card-link putSubmit" data-put="{{id}}" data-userId="{{user_id}}"><i class="fa fa-mail-forward"></i>Edit</a>
-        <a href="#" class="card-link deleteSubmit" data-delete="{{id}}"><i class="fa fa-mail-forward"></i>Delete</a>
+        {{#if category_id}}
+        <a href="#" class="card-link putSubmit" data-user="{{this.user_id}}" data-put="{{id}}" data-community="{{this.category_id}}"><i class="fa fa-mail-forward"></i>Edit</a>
+        {{else}}
+        <a href="#" class="card-link putSubmit" data-user="{{this.user_id}}" data-put="{{id}}" data-community="{{this.category_id}}"><i class="fa fa-mail-forward"></i>Edit</a>
+        {{/if}}
+        {{#if category_id}}
+        <a href="#" class="card-link deleteSubmit" data-user="{{user_id}}" data-delete="{{this.id}}" data-community="{{this.category_id}}"><i class="fa fa-mail-forward"></i>Delete</a>
+        {{else}}
+         <a href="#" class="card-link deleteSubmit" data-user="{{user_id}}" data-delete="{{this.id}}" data-community="{{this.category_id}}"><i class="fa fa-mail-forward"></i>Delete</a>
+        {{/if}}
     </div>
-
-<div class="commentWork-{{id}}" data-commentWork="{{id}}"></div>
+{{!-- this.user_id --}}
+<div class="commentWork-{{this.id}}" data-commentWork="{{this.id}}"></div>
 
     {{/each}}
 
