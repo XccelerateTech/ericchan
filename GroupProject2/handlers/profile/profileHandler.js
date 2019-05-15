@@ -9,8 +9,8 @@ const getFeedFunc = async (req, res, next) => {
     console.log(result);
 
 
-    let renderObject = { renderPostProperty: result, username: [{username: result[0]['username']}]};
-
+    let renderObject = { renderPostProperty: result, username: [{username: result[0]['username']}], comment_box_id: result[0]['id']};
+console.log(renderObject)
     // res.render('post', renderObject)
     res.render('ji_post', renderObject)
     // res.send(result); //user's feed in a format of array object

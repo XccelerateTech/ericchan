@@ -6,7 +6,7 @@ const getCommentFunc = async (req, res, next) => {
     let array = [user_id];
     let feed = await PostSQLQuery.getFeedData(array);
 
-    let post_id = feed[req.params.id].id // comment_box_id
+    let post_id = req.params.id // comment_box_id
     console.log(post_id);
     let commentArray = [post_id];
     let result = await SQLQuery.getComment(commentArray);

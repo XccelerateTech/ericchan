@@ -1,3 +1,8 @@
+$(".comment").click(function(){
+    $('.commentWork').toggle();
+})
+
+
 // module.exports = function addUserToNavbar (user){
 //     document.getElementById("userInfo").innerHTML = "{{user}}";
 // }
@@ -18,80 +23,53 @@ window.reload = function () {
     }
 }
 
-// const postTemplate = Handlebars.compile(  //broswer said it is undefined here//
-//     `
-//   {{#each post}}
-//   <div class="card gedf-card">
-//     <div class="card-header">
-//         <div class="d-flex justify-content-between align-items-center">
-//             <div class="d-flex justify-content-between align-items-center">
-//                 <div class="mr-2">
-//                     <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="">
-//                 </div>
-//                 <div class="ml-2">
-//                     <div class="h5 m-0">Hopeinvader</div>
-//                     <div class="h7 text-muted">Miracles Lee Cross</div>
-//                 </div>
-//             </div>
-//             <div>
-//                 <div class="dropdown">
-//                     <button class="btn btn-link dropdown-toggle" type="button" id="gedf-drop1" data-toggle="dropdown"
-//                         aria-haspopup="true" aria-expanded="false">
-//                         <i class="fa fa-ellipsis-h"></i>
-//                     </button>
-//                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="gedf-drop1">
-//                         <div class="h6 dropdown-header">Configuration</div>
-//                         <a class="dropdown-item" href="#">Save</a>
-//                         <a class="dropdown-item" href="#">Hide</a>
-//                         <a class="dropdown-item" href="#">Report</a>
-//                     </div>
-//                 </div>
-//             </div>
-//         </div>
+const postTemplate = Handlebars.compile(  //broswer said it is undefined here//
+    `
+  {{#each post}} 
+  {{comment_content}} 
+   {{/each}}
+  `
+);
 
-//     </div>
-//     <div class="card-body">
-//         <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i>10 min ago</div>
-//         <a class="card-link" href="#">
-//             <h5 class="card-title">Lorem ipsum dolor sit amet, consectetur adip.</h5>
-//         </a>
+// function append(){}
 
+// let id
 
-// <textarea class="card-text textedValue" style="border: none" rows="4" cols="20" data-putText="{{@index}}">{{content}}</textarea>
+// $(".commentWork").click(function (event) {
 
-//         {{!-- <p class="card-text"> --}}
-
-//             {{!-- {{content}} --}}
-
-//         {{!-- </p> --}}
-
-
-//     </div>
-//     <div class="card-body icons-box">
-//         <div class="d-flex justify-content-between align-items-center">
-//             <i class="fas fa-heart icons-first"> 6</i>
-//             <i class="fa fa-comment"> 5</i>
-//         </div>
-//     </div>
-//     <div class="card-footer">
-//         <a href="#" class="card-link"><i class="far fa-heart"></i> Like</a>
-//         <a href="#" class="card-link"><i class="far fa-comment"></i> Comment</a>
-//         <a href="#" class="card-link"><i class="fa fa-mail-forward"></i> Share</a>
-//         <a href="#" class="card-link putSubmit" data-put="{{@index}}"><i class="fa fa-mail-forward"></i>Edit</a>
-//         <a href="#" class="card-link deleteSubmit" data-delete="{{@index}}"><i class="fa fa-mail-forward"></i>Delete</a>
-//     </div>
-// </div>
-  
-//   {{/each}}
-//   `
-// );
+//     id = $(event.currentTarget).data('commentWork');
+//     console.log(id)
+// })
 
 // const reloadPost = (data) => {
 //     console.log('trying')
-//     $('#postBox').html(postTemplate({ post: data }));
+//     console.log(id)
+//     $('.commentWork-'+id).html(postTemplate({ post: data }));
 //     console.log('No?')
 // }
 
+$(".comment").click(function (event) {
+    console.log('butt')
+    event.preventDefault();
+    let id = $(event.currentTarget).data('comment');
+
+    console.log(id)
+
+    axios.get(`/profile/comment/`+id)
+        .then((res) => {
+            console.log("axios then is working")
+            // console.log(res.data, 'X')
+            console.log(res + 'hello')
+            
+            
+            $('.commentWork-'+id).html(postTemplate({ post: res.data }));
+            // reloadPost(res.data)
+        }).catch((err) => {
+            console.log(err)
+        });
+
+    //   $("a").attr("href", "/profile/comment/" + id);
+})
 // const reloadPage = (data) => {
 //     console.log('trying')
 //     $('#postBox').html(postTemplate({ post: data }));
@@ -178,26 +156,6 @@ $("#post").click(function (event) {
 })
 
 
-// $(".comment").click(function (event) {
-//     console.log('butt')
-//     event.preventDefault();
-//     let id = $(event.currentTarget).data('comment');
-
-//     console.log(id)
-
-//     axios.get(`/profile/comment/${id}`)
-//         .then((res) => {
-//             console.log("axios then is working")
-//             // console.log(res.data, 'X')
-//             console.log(res + 'hello')
-//             reloadNotes(res.data)
-//         }).catch((err) => {
-//             console.log(err)
-//         });
-
-//     //   $("a").attr("href", "/profile/comment/" + id);
-
-// })
 
 let content
 
