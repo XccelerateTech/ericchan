@@ -4,7 +4,9 @@
                 <div class="card-body py-2">
                     <div class="d-flex">
                         <div>
-                            <img class="rounded-circle" width="50" src="https://picsum.photos/80/80/?random?image=4">
+                            {{#each profilepic}}
+                            <img class="rounded-circle" width="50" src="{{{profilepic}}}">
+                            {{/each}}
                         </div>
                         <div class="col">
                             <form action="">

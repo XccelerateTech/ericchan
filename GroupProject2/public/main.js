@@ -5,8 +5,8 @@
 //     // $(event.target).removeClass('read-more-state');
 //   });
 
-$(".comment").click(function(){
-    
+$(".comment").click(function () {
+
     $('.commentWork').toggle();
 
 })
@@ -39,7 +39,7 @@ const postTemplate = Handlebars.compile(  //broswer said it is undefined here//
     <div class="d-flex justify-content-between align-items-center">
         <div class="d-flex justify-content-between align-items-center">
             <div class="mr-2">
-                <img class="rounded-circle" width="35" src="https://picsum.photos/50/50" alt="">
+            <img class="rounded-circle" width="35" src="{{{profilepic}}}">
             </div>
             <div class="ml-2">
                 <a href="#" class="fcLink">
@@ -100,13 +100,13 @@ $(".comment").click(function (event) {
 
     console.log(id)
 
-    axios.get(`/profile/comment/`+id)
+    axios.get(`/profile/comment/` + id)
         .then((res) => {
             console.log("axios then is working")
             // console.log(res.data, 'X')
             console.log(res + 'hello')
-            
-            $('.commentWork-'+id).html(postTemplate({ post: res.data }));
+
+            $('.commentWork-' + id).html(postTemplate({ post: res.data }));
             // reloadPost(res.data)
         }).catch((err) => {
             console.log(err)
@@ -211,12 +211,12 @@ $(".textedValue").mouseleave(function (event) {
 $(".putSubmit").click(function (event) {
     let user_id = $(event.currentTarget).data('user')
     let id = $(event.currentTarget).data('put');
-    
+
     console.log(id);
     console.log(user_id)
     console.log(content);
-    
-    axios.put("/profile/" + id + "?data=" + content+"&userId="+ user_id)
+
+    axios.put("/profile/" + id + "?data=" + content + "&userId=" + user_id)
         .then(res => location.reload(true))
 
 });
@@ -228,7 +228,7 @@ $(".deleteSubmit").click(function (event) {
     console.log(typeof id);
 
 
-    axios.delete("/profile/" + id + "?userId="+ user_id)
+    axios.delete("/profile/" + id + "?userId=" + user_id)
         .then(res => location.reload(true))
 
 })

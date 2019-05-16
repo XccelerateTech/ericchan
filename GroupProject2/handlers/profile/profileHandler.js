@@ -7,12 +7,13 @@ const getFeedFunc = async (req, res, next) => {
     let array = [user_id];
     let result = await SQLQuery.getFeedData(array);
 
-    console.log(result);
+    // console.log(result);
 
 
-    let renderObject = { renderPostProperty: result, username: [{ username: result[0]['username'] }] };
-    console.log(renderObject)
+    let renderObject = { renderPostProperty: result, username: [{ username: result[0]['username'] }], profilepic:[{ profilepic: result[0]['profilepic'] }] };
+    // console.log(renderObject)
     // res.render('post', renderObject)
+console.log(result[0]['profilepic'])
 
     // res.send(result)
     res.render('ji_post', renderObject)
@@ -27,7 +28,7 @@ const getProfileFeedFunc = async (req, res, next) => {
 
     console.log(result);
 
-    let renderObject = { renderPostProperty: result, username: [{ username: result[0]['username'] }], layout: 'viewProfile' };
+    let renderObject = { renderPostProperty: result, username: [{ username: result[0]['username'] }],profilepic:[{ profilepic: result[0]['profilepic'] }], layout: 'viewProfile' };
 
     res.render('ji_post', renderObject)
     // res.send(result)

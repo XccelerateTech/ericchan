@@ -159,6 +159,38 @@ app.post('/communityUpload/:id', (req, res) => {
     })
 })
 
+app.post('/uploadprofileimg', (req, res) => {
+    const upload = multer({
+        storage: storage,
+    }).single('myImage');
+
+    upload(req, res, (err) => {
+        if (err) {
+            console.log(err)
+        }
+        else {
+            console.log("file uploaded") 
+            console.log(req.file.filename)
+            console.log(req.user.id)
+            res.redirect('/profile')
+            async function insertPic(name) {
+                var query = `update users set profilepic =$1 where id = ${req.user.id}`;
+                // var query = `INSERT INTO POST (CONTENT,USER_ID,PERSONAL,TXT,PHOTO,CATEGORY_ID)VALUES  ($1, $2, $3, $4, $5,$6) RETURNING id`;
+                await client.query(query,[name] ,function (err, results) {
+                    if (err) {
+                        console.log(err);
+                    }
+                })
+            }
+
+            // let captionImg = `<img width="100%" src="/uploads/${req.file.filename}">`
+            let captionImg = `/uploads/${req.file.filename}`
+
+            insertPic(captionImg);
+        }
+    })
+ })
+
 
 
 app.listen(3000);

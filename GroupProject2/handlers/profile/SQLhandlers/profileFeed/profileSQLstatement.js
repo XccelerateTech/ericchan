@@ -1,5 +1,5 @@
 exports.getFeedSQL = 
-`select post.id, post.user_id, post.content,users.username
+`select post.id, post.user_id, post.content,users.username,users.profilepic
 from post
 inner join users
 on post.user_id = users.id
@@ -52,3 +52,5 @@ WHERE comment_box_id = $1
 // on post.user_id = users.id
 // WHERE user_id = $1
 // ORDER BY id DESC
+
+

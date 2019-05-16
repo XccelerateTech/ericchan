@@ -1,6 +1,6 @@
 exports.getCommentSQL = 
 `
-SELECT comment.id, comment.user_id,comment.comment_content,post.comment_box, users.username 
+SELECT comment.id, comment.user_id,comment.comment_content,post.comment_box, users.username, users.profilepic 
 from comment                                                                                  
 inner join post                                                                              
 on comment.comment_box_id = post.comment_box
@@ -10,7 +10,6 @@ where comment.comment_box_id = $1
 
 ORDER BY id DESC
 `
-
 
 exports.getCommentForEditSQL = 
 `

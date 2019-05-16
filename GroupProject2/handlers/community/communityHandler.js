@@ -8,7 +8,15 @@ const getFeedFunc = async (req, res, next) => {
     console.log(result);
     // res.send(result);
 
-    let renderObject = { renderPostProperty: result, category_name: [{ category_name: result[0]['category_name'] }], category_id: [{ category_id: result[0]['category_id'] }], layout: 'community' };
+    let userId = [req.user.id]
+    let userProfilePic = await SQLQuery.identifyUser(userId)
+    console.log(userProfilePic)
+
+    let renderObject = { renderPostProperty: result, 
+        category_name: [{ category_name: result[0]['category_name'] }], 
+        category_id: [{ category_id: result[0]['category_id'] }],
+        profilepic:[{ profilepic: userProfilePic[0]['profilepic'] }],
+         layout: 'community' };
 
     res.render('ji_post', renderObject)
 }

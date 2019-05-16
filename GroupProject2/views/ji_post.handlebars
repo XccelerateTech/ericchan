@@ -4,7 +4,14 @@
         <div class="d-flex justify-content-between align-items-center">
             <div class="d-flex justify-content-between align-items-center">
                 <div class="mr-2">
-                    <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="">
+                    {{!-- <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt=""> --}}
+                    {{!-- {{#each ../profilepic}}
+                    <img class="rounded-circle" width="50" src="{{{this.profilepic}}}">
+
+                    {{/each}} --}}
+
+                    <img class="rounded-circle" width="50" src="{{{profilepic}}}">
+
                 </div>
                 <div class="ml-2">
                     <div class="h5 m-0">{{this.username}}</div>
@@ -54,25 +61,31 @@
     <div class="card-footer">
         <a href="#" class="card-link"><i class="far fa-heart"></i> Like</a>
         {{#if category_id}}
-        <a href="#" class="card-link comment" data-comment="{{this.id}}" data-community="{{this.category_id}}"><i class="far fa-comment"></i> Comment</a>
+        <a href="#" class="card-link comment" data-comment="{{this.id}}" data-community="{{this.category_id}}"><i
+                class="far fa-comment"></i> Comment</a>
         {{else}}
-        <a href="#" class="card-link comment" data-comment="{{this.id}}" data-community="{{this.category_id}}"><i class="far fa-comment"></i> Comment</a>
+        <a href="#" class="card-link comment" data-comment="{{this.id}}" data-community="{{this.category_id}}"><i
+                class="far fa-comment"></i> Comment</a>
         {{/if}}
         {{!-- <div class="commentWork" data-commentWork="{{id}}"></div> --}}
         <a href="#" class="card-link"><i class="fa fa-mail-forward"></i> Share</a>
         {{#if category_id}}
-        <a href="#" class="card-link putSubmit" data-user="{{this.user_id}}" data-put="{{id}}" data-community="{{this.category_id}}"><i class="fa fa-mail-forward"></i>Edit</a>
+        <a href="#" class="card-link putSubmit" data-user="{{this.user_id}}" data-put="{{id}}"
+            data-community="{{this.category_id}}"><i class="fa fa-mail-forward"></i>Edit</a>
         {{else}}
-        <a href="#" class="card-link putSubmit" data-user="{{this.user_id}}" data-put="{{id}}" data-community="{{this.category_id}}"><i class="fa fa-mail-forward"></i>Edit</a>
+        <a href="#" class="card-link putSubmit" data-user="{{this.user_id}}" data-put="{{id}}"
+            data-community="{{this.category_id}}"><i class="fa fa-mail-forward"></i>Edit</a>
         {{/if}}
         {{#if category_id}}
-        <a href="#" class="card-link deleteSubmit" data-user="{{user_id}}" data-delete="{{this.id}}" data-community="{{this.category_id}}"><i class="fa fa-mail-forward"></i>Delete</a>
+        <a href="#" class="card-link deleteSubmit" data-user="{{user_id}}" data-delete="{{this.id}}"
+            data-community="{{this.category_id}}"><i class="fa fa-mail-forward"></i>Delete</a>
         {{else}}
-         <a href="#" class="card-link deleteSubmit" data-user="{{user_id}}" data-delete="{{this.id}}" data-community="{{this.category_id}}"><i class="fa fa-mail-forward"></i>Delete</a>
+        <a href="#" class="card-link deleteSubmit" data-user="{{user_id}}" data-delete="{{this.id}}"
+            data-community="{{this.category_id}}"><i class="fa fa-mail-forward"></i>Delete</a>
         {{/if}}
     </div>
-{{!-- this.user_id --}}
-<div class="commentWork-{{this.id}}" data-commentWork="{{this.id}}"></div>
+    {{!-- this.user_id --}}
+    <div class="commentWork-{{this.id}}" data-commentWork="{{this.id}}"></div>
 
     {{/each}}
 
@@ -93,7 +106,7 @@ below div is from ji_profile.handlebar's bottom --}}
 
 
 
-                                    {{!-- <div class="card-header comment-box read-more-state">
+{{!-- <div class="card-header comment-box read-more-state">
     <div class="d-flex justify-content-between align-items-center">
         <div class="d-flex justify-content-between align-items-center">
             <div class="mr-2">
