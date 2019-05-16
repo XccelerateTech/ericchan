@@ -16,6 +16,8 @@ const getFeedFunc = async (req, res, next) => {
         category_name: [{ category_name: result[0]['category_name'] }], 
         category_id: [{ category_id: result[0]['category_id'] }],
         profilepic:[{ profilepic: userProfilePic[0]['profilepic'] }],
+        identityUser: [{ identityUserPic: userProfilePic[0]['profilepic'] }],
+        identityUsername: [{ identityUsername: userProfilePic[0]['username'] }],
          layout: 'community' };
 
     res.render('ji_post', renderObject)

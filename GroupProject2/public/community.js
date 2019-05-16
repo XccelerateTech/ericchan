@@ -18,6 +18,47 @@ $("#communityPost").click(function (event) {
 
 })
 
+
+
+
+
+
+let commentPostContent
+
+$(".commentValue").mouseleave(function (event) {
+    commentPostContent = $(event.currentTarget).val();
+    console.log(commentPostContent);
+})
+
+$(".commentPost").click(function (event) {
+    event.preventDefault();
+    // let postContent = $(".commentValue").val()
+
+    let postId = $(event.currentTarget).data('commentpost')
+
+    let communityId = $(event.currentTarget).data('post')
+
+    console.log(communityId)
+    console.log(commentPostContent);
+    console.log(postId)
+    axios.post("/community" +"/comment/"+communityId+'?data=' + commentPostContent+'&id='+ postId)
+        .then((res) => {
+
+
+            location.reload(true)
+
+        }).catch((err) => {
+            console.log(err)
+        })
+
+})
+
+
+
+
+
+
+
 let content
 
 $(".textedValue").mouseleave(function (event) {

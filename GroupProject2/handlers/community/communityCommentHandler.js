@@ -22,35 +22,21 @@ const postCommentFunc = async (req, res, next) => {
     let user_id = req.user.id
     let commentContent = req.query.data
 
-    let community_id = await req.params.id  //community no.//
-    let communityArray = [community_id];
-    let feed = await PostSQLQuery.getFeedData(communityArray)
+    // let community_id = await req.params.id  //community no.//
+    // let communityArray = [community_id];
+    // let feed = await PostSQLQuery.getFeedData(communityArray)
 
-    let post_id = feed[req.query.id].id // comment_box_id
+    let post_id = req.query.id // comment_box_id
     console.log(commentContent)
 
-    var chars = commentContent.split('');
-    var last = chars[chars.length - 1]
-    var last1 = chars[chars.length - 2]
-    var last2 = chars[chars.length - 3]
-    var last3 = chars[chars.length - 4]
-
-    var word = last3 + last2 + last1 + last
-    console.log(word)
     let array = [];
-    if (word === '.jpg') {
-        array.push(commentContent)
-        array.push(user_id)
-        array.push('FALSE')
-        array.push('TRUE')
-        array.push(post_id)
-    } else {
+
         array.push(commentContent)
         array.push(user_id)
         array.push('TRUE')
         array.push('FALSE')
         array.push(post_id)
-    }
+    
     console.log(array)
     SQLQuery.postComment(array)
 

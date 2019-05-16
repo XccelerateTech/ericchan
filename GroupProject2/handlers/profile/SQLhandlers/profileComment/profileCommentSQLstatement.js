@@ -11,6 +11,13 @@ where comment.comment_box_id = $1
 ORDER BY id DESC
 `
 
+exports.identifyUserSQL = 
+`
+SELECT profilepic,username FROM USERS
+WHERE id = $1
+`
+
+
 exports.getCommentForEditSQL = 
 `
 SELECT comment.id, comment.user_id,comment.comment_content,post.comment_box 

@@ -11,7 +11,7 @@ ORDER BY id DESC
 
 exports.identifyUserSQL = 
 `
-SELECT profilepic FROM USERS
+SELECT profilepic, username FROM USERS
 WHERE id = $1
 `
 

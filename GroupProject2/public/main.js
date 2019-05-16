@@ -5,11 +5,11 @@
 //     // $(event.target).removeClass('read-more-state');
 //   });
 
-$(".comment").click(function () {
+// $(".comment").click(function () {
 
-    $('.commentWork').toggle();
+//     $('.commentWork').toggle();
 
-})
+// })
 
 
 // module.exports = function addUserToNavbar (user){
@@ -39,7 +39,7 @@ const postTemplate = Handlebars.compile(  //broswer said it is undefined here//
     <div class="d-flex justify-content-between align-items-center">
         <div class="d-flex justify-content-between align-items-center">
             <div class="mr-2">
-            <img class="rounded-circle" width="35" src="{{{profilepic}}}">
+                <img class="rounded-circle" width="35" src="{{{profilepic}}}">
             </div>
             <div class="ml-2">
                 <a href="#" class="fcLink">
@@ -66,8 +66,6 @@ const postTemplate = Handlebars.compile(  //broswer said it is undefined here//
     </div>
 </div>
 {{/each}}
-
-
   `
 );
 
@@ -151,6 +149,8 @@ $(".comment").click(function (event) {
 $("#post").click(function (event) {
     event.preventDefault();
     let postContent = $(".textValue").val()
+    console.log(postContent)
+    // let id = 
 
     axios.post("/profile" + '?data=' + postContent)
         .then((res) => {
@@ -190,6 +190,33 @@ $("#post").click(function (event) {
             //     axios.delete("/profile/" + id)
             //         .then(res => location.reload(true))
             // })
+
+            location.reload(true)
+
+        }).catch((err) => {
+            console.log(err)
+        })
+
+})
+
+let commentPostContent
+
+$(".commentValue").mouseleave(function (event) {
+    commentPostContent = $(event.currentTarget).val();
+    console.log(commentPostContent);
+})
+
+$(".commentPost").click(function (event) {
+    event.preventDefault();
+    // let postContent = $(".commentValue").val()
+
+    let postId = $(event.currentTarget).data('commentpost')
+
+    console.log(commentPostContent);
+    console.log(postId)
+    axios.post("/profile" +"/comment/"+postId+ '?data=' + commentPostContent)
+        .then((res) => {
+
 
             location.reload(true)
 

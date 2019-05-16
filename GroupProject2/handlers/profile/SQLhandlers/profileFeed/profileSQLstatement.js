@@ -3,8 +3,15 @@ exports.getFeedSQL =
 from post
 inner join users
 on post.user_id = users.id
-WHERE user_id = $1
+WHERE user_id = $1 and
+category_id is null
 ORDER BY id DESC
+`
+
+exports.identifyUserSQL = 
+`
+SELECT profilepic, username FROM USERS
+WHERE id = $1
 `
 
 // exports.getTextFeedSQL = 
@@ -54,3 +61,10 @@ WHERE comment_box_id = $1
 // ORDER BY id DESC
 
 
+// select post.id, post.user_id, post.content,users.username,users.profilepic
+// from post
+// inner join users
+// on post.user_id = users.id
+// WHERE user_id = 2 and
+// category_id is null
+// ORDER BY id DESC

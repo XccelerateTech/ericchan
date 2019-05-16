@@ -8,12 +8,19 @@ const getFeedFunc = async (req, res, next) => {
     let result = await SQLQuery.getFeedData(array);
 
     // console.log(result);
+    let identityUser = await SQLQuery.identifyUser(array)
 
 
-    let renderObject = { renderPostProperty: result, username: [{ username: result[0]['username'] }], profilepic:[{ profilepic: result[0]['profilepic'] }] };
+    let renderObject = {
+        renderPostProperty: result,
+        username: [{ username: result[0]['username'] }],
+        profilepic: [{ profilepic: result[0]['profilepic'] }],
+        identityUser: [{ identityUserPic: identityUser[0]['profilepic'] }],
+        identityUsername: [{ identityUsername: identityUser[0]['username'] }],
+    };
     // console.log(renderObject)
     // res.render('post', renderObject)
-console.log(result[0]['profilepic'])
+    console.log(result[0]['profilepic'])
 
     // res.send(result)
     res.render('ji_post', renderObject)
@@ -21,14 +28,25 @@ console.log(result[0]['profilepic'])
 }
 
 const getProfileFeedFunc = async (req, res, next) => {
-    let user_id = req.params.id //user authentication
-    let array = [user_id];
+    let profile_id = req.params.id //user authentication
+    let array = [profile_id];
     let result = await SQLQuery.getFeedData(array);
 
+    let userIdArray = [req.user.id]
+    let identityUser = await SQLQuery.identifyUser(userIdArray)
 
     console.log(result);
 
-    let renderObject = { renderPostProperty: result, username: [{ username: result[0]['username'] }],profilepic:[{ profilepic: result[0]['profilepic'] }], layout: 'viewProfile' };
+    console.log(identityUser)
+
+    let renderObject = {
+        renderPostProperty: result,
+        username: [{ username: result[0]['username'] }],
+        profilepic: [{ profilepic: result[0]['profilepic'] }],
+        identityUser: [{ identityUserPic: identityUser[0]['profilepic'] }],
+        identityUsername: [{ identityUsername: identityUser[0]['username'] }],
+        layout: 'viewProfile'
+    };
 
     res.render('ji_post', renderObject)
     // res.send(result)
@@ -42,7 +60,7 @@ const postFeedFunc = async (req, res, next) => {
 
     let array = [];
 
-    if (user_id === req.params.id) {
+    // if (user_id === req.params.id) {
         array.push(feedContent)
         array.push(user_id)
         array.push('TRUE')
@@ -58,9 +76,9 @@ const postFeedFunc = async (req, res, next) => {
         let sentArray = [{ 'content': feedContent }]
 
         res.send(sentArray);
-    } else {
-        res.send('You do not have the authority to post!')
-    }
+    // } else {
+    //     res.send('You do not have the authority to post!')
+    // }
 
 }
 
