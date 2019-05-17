@@ -251,6 +251,7 @@ $(".putSubmit").click(function (event) {
 $(".deleteSubmit").click(function (event) {
     let user_id = $(event.currentTarget).data('user')
     let id = $(event.currentTarget).data('delete');
+    console.log(user_id)
     console.log(id);
     console.log(typeof id);
 

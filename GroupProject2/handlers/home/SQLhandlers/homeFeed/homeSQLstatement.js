@@ -6,7 +6,7 @@
 // `
 
 exports.getFeedSQL = 
-`select post.id, post.user_id, post.content,users.username, users.profilepic,category.category_name
+`select post.id, post.user_id, post.content,users.username, users.profilepic,post.category_id,category.category_name
 from post
 inner join users
 on post.user_id = users.id

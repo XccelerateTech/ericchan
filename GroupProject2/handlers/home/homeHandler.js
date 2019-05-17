@@ -9,13 +9,13 @@ const getFeedFunc = async(req,res,next)=>{
     // res.send(result);
     let userProfilePic = await SQLQuery.identifyUser(array)
 
-    let renderHomeObject = { renderHomePostProperty: result,
+    let renderPostObject = { renderPostProperty: result,
          username: [{ username: result[0]['username'] }],
          identityUser: [{ identityUserPic: userProfilePic[0]['profilepic'] }],
          identityUsername: [{ identityUsername: userProfilePic[0]['username'] }],
      layout:'homeMain'};
 
-    res.render('ji_home', renderHomeObject);
+    res.render('ji_home', renderPostObject);
 }
 
 const postFeedFunc = async(req,res,next)=>{
